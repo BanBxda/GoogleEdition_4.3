@@ -129,7 +129,8 @@
 
 #define MSM_PMEM_ADSP_SIZE         0x8600000
 #define MSM_PMEM_AUDIO_SIZE        0x4CF000
-#define MSM_PMEM_SIZE              0x0 
+
+#define MSM_PMEM_SIZE 0x0 
 
 #ifdef CONFIG_MSM_MULTIMEDIA_USE_ION
 #define HOLE_SIZE		0x20000
@@ -3416,17 +3417,16 @@ static struct cm3629_platform_data cm36282_pdata_r8 = {
 	.ps1_thd_set = 0x15,
 	.ps1_thd_no_cal = 0x90,
 	.ps1_thd_with_cal = 0xD,
-	.ps_th_add = 5,
 	.ps_calibration_rule = 1,
-	.ps_conf1_val = CM3629_PS_DR_1_40 | CM3629_PS_IT_1_6T |
-			CM3629_PS1_PERS_2,
+	.ps_conf1_val = CM3629_PS_DR_1_320 | CM3629_PS_IT_1_6T |
+			CM3629_PS1_PERS_3,
 	.ps_conf2_val = CM3629_PS_ITB_1 | CM3629_PS_ITR_1 |
 			CM3629_PS2_INT_DIS | CM3629_PS1_INT_DIS,
 	.ps_conf3_val = CM3629_PS2_PROL_32,
 	.dark_level = 1,
-	.dynamical_threshold = 1,
-	.mapping_table = cm3629_mapping_table,
-	.mapping_size = ARRAY_SIZE(cm3629_mapping_table),
+        .dynamical_threshold = 1,
+        .mapping_table = cm3629_mapping_table,
+        .mapping_size = ARRAY_SIZE(cm3629_mapping_table),
 };
 
 
@@ -4641,7 +4641,6 @@ static struct platform_device *common_devices[] __initdata = {
 	&apq_compr_dsp,
 	&apq_multi_ch_pcm,
 	&apq_lowlatency_pcm,
-
 };
 
 static struct platform_device *cdp_devices[] __initdata = {
@@ -5389,7 +5388,6 @@ static void __init m7_common_init(void)
 #ifdef CONFIG_SUPPORT_USB_SPEAKER
 	pm_qos_add_request(&pm_qos_req_dma, PM_QOS_CPU_DMA_LATENCY, PM_QOS_DEFAULT_VALUE);
 #endif
-
 	if (get_kernel_flag() & KERNEL_FLAG_PM_MONITOR) {
 		htc_monitor_init();
 		htc_pm_monitor_init();
